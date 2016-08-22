@@ -50,3 +50,34 @@ what is state??
 http://www.dofactory.com/javascript/state-design-pattern
 
 getInitialState() executes exactly once during the lifecycle of the component and sets up the initial state of the component.
+
+
+in traditional DOM, imput lelements are rendereded and the browser manages the state. As a result, the state of the DOM will differ from its component. In React, components should always represent the state of the view and not only at the point of initialization.
+
+
+#Events
+
+
+React attaches event handlers to components using a camelCase naming convention. We attach onChange handlers to the two <input> elements. Now, as the user enters text into the <input> fields, the attached onChange callbacks are fired and the state of the component is modified. Subsequently, the rendered value of the input element will be updated to reflect the current component state.
+
+
+We attach an onSubmit handler to the form that clears the form fields when the form is submitted with valid input.
+
+
+```
+handleSubmit: function(e) {
+   e.preventDefault(); // Call preventDefault() on the event to prevent the browser's default action of submitting the form.
+   
+   var author = this.state.author.trim();
+   var text = this.state.text.trim();
+   if (!text || !author) {
+     return;
+   }
+   // TODO: send request to the server
+   this.setState({author: '', text: ''});
+ },
+ render: function() {
+   return (
+     <form className="commentForm" onSubmit={this.handleSubmit}>
+  ...
+  ```
